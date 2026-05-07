@@ -1,0 +1,72 @@
+<div class="category_bag container">
+<div class="homecategory">
+ <h1 class="heading text-center"><span>{{ cheading_title }}</span><p>{{ cheadsub_title }}</p></h1> 
+ <div class="row rless">
+    <div id="cat-img" class="owl-carousel owl-theme">
+        {% for category in categories %}
+            {% if category.category_id == category_id %}
+                <div class="block-cat-wr col-xs-12 cless">
+                    <div class="categorybr">
+                    <a href="{{ category.href }}">
+                        {% if category.image_name %}
+                            <img src="{{ category.image_name }}" class="img-responsive center-block" alt="">
+                        {% else %}
+                            <img src="image/no_image.png" class="img-responsive center-block" alt="">
+                        {% endif %}
+                        <div class="catcontent">
+                            <h2><span>{{ category.name }}</span></h2>
+                            <p class="countprice">{{ description }}</p>
+                            <h4>shop now</h4> 
+                        </div>
+                    </a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="block-cat-wr col-xs-12 cless">
+                    <div class="categorybr">
+                    <div class="subcat row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 cless cat-img">
+                    <a href="{{ category.href }}">
+                        {% if category.image_name %}
+                           <img src="{{ category.image_name }}" class="img-responsive center-block" alt="">
+                        {% else %}
+                            <img src="image/no_image.png" class="img-responsive center-block" alt="">
+                        {% endif %}
+                          </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6  catcontent">
+                            <h2><span class="categorybor">{{ category.name }}</span></h2>
+                            <p class="countprice">{{ category.description }}</p>
+                            <h6 class="catepro">{{category.totalp}} {{catepro}}</h6>
+                        </div>
+                    </a>
+                  
+                    </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>  
+</div>   
+</div>
+</div>
+<script type="text/javascript">
+ $(document).ready(function() {
+    $("#cat-img").owlCarousel({
+    itemsCustom : [
+    [0, 1],
+    [320, 1],
+    [400, 2],
+    [600, 2],
+    [768, 2],
+    [992, 3],
+    [1200, 3],
+    [1410, 4]
+    ],
+      autoPlay: 6000,
+      navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+      navigation : false,
+      pagination:false,
+      autoPlay: false
+    });
+});
+</script>

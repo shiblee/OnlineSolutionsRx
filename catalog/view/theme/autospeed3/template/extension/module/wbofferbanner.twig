@@ -1,0 +1,28 @@
+<div class="offer-bag">
+<div class="container">
+<div class="row rless">
+<div class="offrow">
+			{% for banner in banners %}
+				<div class="offbanner col-xs-6 cless">
+				<div class="beffect">
+				  {% if banner.link %}
+				  	<a href="{{ banner.link }}">
+				  		<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+				  	</a>
+				  {% else %}
+				  	<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />{% endif %}
+				</div>
+				<div class="off-dec">
+				<div class="off-text">
+			  <span class="off-title">{{ banner.description }}</span>
+			  <a href="{{ banner.link }}" class="btn btn-primary">{{ shop_now }}</a>
+			</div>
+		</div>
+		
+				</div>
+			  {% endfor %}
+
+</div>
+</div>
+</div>
+</div>

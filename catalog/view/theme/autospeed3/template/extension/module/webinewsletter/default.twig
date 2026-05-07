@@ -1,0 +1,35 @@
+<div class="newimg">
+<div class="container">
+<div class="newsl webi-newsletter {{ prefix }}" id="newsletter_{{ id }}" data-mode="{{ mode }}">
+		<form id="formNewLestter" method="post" action="{{ action }}" class="formNewLestter" {% if banner is not empty%} style="background-image: url('{{ banner }}')" {% endif %}>
+			<div class="inner">
+					
+				<div id="newsletter">
+					<div class="hidden-xs cless">
+					<h1 class="heading text-center"><span>{{ entry_sign_up_for_newsletter }}</span></h1>
+					 <div class="description-top">
+						{{ description }}
+					</div> 
+					</div>
+				<div class="block_newsletter email-f">	
+				<div class="input-group">
+					<input type="text" class="form-control input-md inputNew" {% if customer_email is not defined %} onblur="javascript:if(this.value=='')this.value='{{ default_input_text }}';" onfocus="javascript:if(this.value=='{{ default_input_text }}')this.value='';"{% endif %} value="{{ customer_email? customer_email : default_input_text }}" size="18" name="email" placeholder="Your email address">
+				
+					<div class="input-group-btn"><button type="submit" name="submitNewsletter" class="newsbtn btn btn-primary">{{ button_subscribe }}</button></div>
+					<div class="valid"></div>
+					</div>
+
+				</div>
+					
+				<input type="hidden" value="1" name="action">
+			
+			
+			</div>
+		</div>
+		</form>
+</div>
+</div>
+</div>
+<script type="text/javascript"><!--
+$("#newsletter_{{ id }}").webiNewsletter().work(  '{{ valid_email }}' );
+--></script>

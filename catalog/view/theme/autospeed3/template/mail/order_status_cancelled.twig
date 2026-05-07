@@ -1,0 +1,33 @@
+<p>Dear {{ order_info.firstname }},</p>
+<p>We are writing to update you on the status of your order with Order ID: <strong>{{ order_id }}</strong>.</p>
+
+<p><strong>Current Order Status:</strong> {{ order_status }}</p>
+
+<p>If your order has been shipped, you can expect it to arrive soon.</p>
+
+<h3>Order Details:</h3>
+<p><strong>Order Date:</strong> {{ date_added }}</p>
+<p><strong>Shipping Address:</strong> {{ shipping_address }}</p>
+
+<h3>Products Ordered:</h3>
+<ul>
+{% for product in products %}
+    <li>{{ product.name }} x {{ product.quantity }} - {{ product.total }}</li>
+{% endfor %}
+</ul>
+
+<p><strong>Total Amount:</strong> 
+{% for total in totals %}
+    {% if total.code == 'total' %}
+        {{ total.text }}
+    {% endif %}
+{% endfor %}
+</p>
+
+<p><strong>Payment Method:</strong> {{ payment_method }}</p>
+
+<p>If you have any questions, contact us at support@onlinesolutionsrx.com or call us at 123-456-7890.</p>
+
+<p>Thank you for choosing OnlineSolutionsRx.</p>
+
+<p>Best regards,<br/>The OnlineSolutionsRx Team</p>

@@ -1,0 +1,39 @@
+<div class="sliimg">
+<div class="container">
+<div class="row">
+  <div class="col-lg-3 col-md-3 menu-part"></div>
+  <div class="col-lg-7 col-md-9 slid-pad">
+    <div class="homeslider-container s-panel">
+<div class="loader wrloader"></div>
+<div id="slideshow{{ module }}" class="slideshow">
+    {% for banner in banners %}
+      <div class="s-slider">
+        {% if banner.link %}
+          <a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive center-block" /></a>{% else %}<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive center-block" />
+        {% endif %}
+      <div class="slidertext">
+      <div class="slideff">
+        {{ banner.description }}
+        <a href="{{ banner.link }}" class="btn btn-primary">{{ shop_now }}</a>
+      </div>
+      </div>
+    </div>
+      {% endfor %}
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+  $('.slideshow').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: false,
+  arrows: true,
+  dots: false,
+  autoplaySpeed: 3000,
+});
+</script>

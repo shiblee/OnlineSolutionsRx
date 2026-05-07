@@ -1,0 +1,23 @@
+<h1>{{ heading_title }}</h1>
+<a href="{{ add }}" class="btn btn-primary">Add Category</a>
+<form action="{{ delete }}" method="post">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Category Name</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in categories %}
+        <tr>
+          <td><input type="checkbox" name="selected[]" value="{{ category.category_id }}"></td>
+          <td>{{ category.name }}</td>
+          <td>{{ category.status ? 'Enabled' : 'Disabled' }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <button type="submit" class="btn btn-danger">Delete</button>
+</form>

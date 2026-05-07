@@ -1,0 +1,26 @@
+<div class="imgsp">
+{% set temp = 0 %}
+{% for banner in banners %}
+    <div class="sub-img">
+    
+	        {% if banner.link %}
+			    <a href="{{ banner.link }}">
+			    <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive center-block" />
+			    </a>
+			    {% else %}
+			    <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive center-block" />
+		    {% endif %}
+		
+		<div class="img-dec {% if temp == 0 %} first-banner {% elseif temp == 1 %} middle-banner {% else %} third-banner {% endif %}">
+				<div class="img-text">
+			  <span class="img-title">{{ banner.description }}</span>
+			</div>
+		</div>
+		
+	</div>
+	{% set temp = temp+1 %}
+	{% endfor %}
+	</div>
+
+
+

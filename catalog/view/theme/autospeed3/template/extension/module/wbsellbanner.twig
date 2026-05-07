@@ -1,0 +1,24 @@
+<div class="container sellbanner">
+<div class="row">
+<div class="col-xs-12">
+			{% for banner in banners %}
+				<div class=" beffect">
+				  {% if banner.link %}
+				  	<a href="{{ banner.link }}">
+				  		<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+				  	</a>
+				  {% else %}
+				  	<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+				  {% endif %}
+				</div>
+				<div class="sell-dec">
+				<div class="sell-text">
+			  <span class="sell-title">{{ banner.description }}</span>
+			  <a href="{{ banner.link }}" class="btn btn-primary">{{ sell_now }}</a>
+			</div>
+		</div>
+				
+			  {% endfor %}
+</div>
+</div>
+</div>

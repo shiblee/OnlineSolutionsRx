@@ -1,0 +1,206 @@
+<div class="cate-pro">
+<div class="category-tab tabpro next-prevb container">
+    <h1 class="heading  text-center"><span>{{heading_title}}</span><p>{{ catheadsub_title }}</p></h1>
+     <button type="button" class="toggle collapsed catb" data-toggle="collapse" data-target="#cat_tab"></button>
+    <!--category-tab-->
+<div class="cat-tab">
+    <div class="home-cat collapse text-left" id="cat_tab">
+        <ul class="nav nav-tabs cate-ul">
+              {% set i = 0 %}
+              {% for category in categories %}
+                {% if i == 8 %}
+                  <li class="wbview_more webTab hidden-xs"><a class=""><div class="dots"></div><span class="categoryName">More</span></a> </li>
+        </ul>
+        <ul class="viewmore text-left">
+          {% endif %}
+           
+              
+                {% if loop.index0 == 0 %}
+                    {% set class = ' class="active webTab"' %}
+                {% else %}
+                    {% set class = ' class="webTab"' %}
+                {% endif %}
+                <li {{class}}><a href="#tab-{{loop.index}}" data-toggle="tab">{{category.category}}</a></li>
+                  {% set i = i + 1 %}
+                {% endfor %}
+        </ul>
+    </div>
+
+
+    
+      
+    <div class="cate-b-part">
+        <div class="tab-content">
+        {% for products in categories %}
+        {% if loop.index0 == 0 %}
+            {% set class = ' active in' %}
+        {% else %}
+            {% set class = ''%}
+        {% endif %}
+        <div class="tab-pane fade{{class}}" id="tab-{{loop.index}}">
+          <div class="row rless">
+          <div id="cattab" class="owl-carousel owl-theme">
+
+            {% for product in products.products %}
+   
+    <div class="product-layout col-xs-12 cless ">
+    <div class="product-thumb transition">
+      <div class="image">
+      <div class="owl-caadditional">
+      <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive center-block" /></a>
+        {% set t = 0 %}
+        {% for webi_image in product.webi_images %}
+         {% if t == 0  or t == 1 %}
+           <a href="{{ product.href }}"><img src="{{ webi_image.popup }}" class="img-responsive" alt="hover image"/></a>
+          {% set t = t + 1 %}
+          {% endif %}
+        {% endfor %}
+        </div>
+          {% if product.is_new %}
+                    <span class="new">{{ pro_new }}</span>
+                  {% endif %}
+                {% if product.tag_per  %}
+                <span class="sale">{{ product.tag_per }}%</span>
+                {% endif %}
+      
+     
+      </div>
+    
+      <div class="caption text-center">
+          {% if product.price %}
+            <div class="price">
+              {% if not product.special %}
+              {{ product.price }}
+              {% else %}
+              <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+              {% endif %}
+              
+             {#  {% if product.tax %}
+              <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+              {% endif %} #}
+            </div>
+          {% endif %}
+        <div class="rat-pri">
+        <h4  class="protitle"><a href="{{ product.href }}">{{ product.name }}</a></h4>
+         {% if product.rating %}
+            
+            <div class="rating">
+              {% for i in 1..5 %}
+              {% if product.rating < i %}
+              <span class="fa fa-stack">
+                <i class="fa fa-star-o fa-stack-2x"></i>
+              </span>
+              {% else %}
+              <span class="fa fa-stack">
+                <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+              </span>
+              {% endif %}
+            {% endfor %}</div>{% else %}
+            <div class="rating">{% for i in 1..5 %}
+            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+            {% endfor %}</div>
+            
+          {% endif %}
+           </div>
+        
+           
+          
+    
+
+        <div class="button-group">
+            
+            <div class="add-cart">
+          <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><svg><use xlink:href="#heart" /></svg></button>
+          <button type="button" class="cartb" data-toggle="tooltip" title="{{ button_cart }}" onclick="cart.add('{{ product.product_id }}');"><svg><use xlink:href="#pcart"></use></svg><span class="hidden-xs hidden-sm">{{ button_cart }}</span></button> 
+          <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><svg><use xlink:href="#compare"/></svg></button>
+           </div>
+          <div class="absbtn">
+          <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
+          </div>
+      </div>
+       
+      </div>
+    </div>
+  </div>
+         
+
+  {% endfor %}
+
+
+            </div>
+        </div>
+      </div>
+        {% endfor %}
+      </div>
+      </div>
+
+</div>
+</div>
+</div>
+<!--/category-tab-->
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".tab-content .tab-pane #cattab").owlCarousel({
+    itemsCustom : [
+    [0, 1],
+    [320, 2],
+    [400, 3],
+    [576, 3],
+    [768, 3],
+    [992, 4],
+    [1200, 5],
+    [1410, 5],
+    [1590, 6]
+    ],
+      autoPlay: 5000,
+      navigationText: ['<i class="fa fa-caret-left"></i>', '<i class="fa fa-caret-right"></i>'],
+      navigation : true,
+      pagination:false,
+      autoPlay:false
+    });
+});
+
+
+ $(document).ready(function() {
+  $('.webTab').click(function(){
+     $('.webTab').addClass('active');
+     $('.webTab').removeClass('active');
+  });
+});
+
+
+        $(document).ready(function(){
+if ($(document).width() > 991){
+     var count_block = $('.tabpro .webTab').length;
+     var number_blocks = 8;
+     if(count_block < number_blocks){
+          return false; 
+     } else {
+          $('.tabpro .webTab').each(function(i,n){
+                if(i> number_blocks) {
+                    $(this).addClass('it_hide_wbtab');
+                }
+          })
+          $('.it_hide_wbtab').hide();
+          $('.tabpro .wbview_more').click(function() {
+                $(this).toggleClass('active');
+                $('.it_hide_wbtab').slideToggle();
+          });
+     }
+}
+});
+
+$(document).ready(function() {
+    $(".tab-content .tab-pane .owl-caadditional").slick({
+            centerMode: false,
+            slidesToShow: 1,
+            autoplay: false,
+            autoplaySpeed: 2000,
+            arrows: false,
+            dots: true,
+            pauseOnHover: !1
+        })
+    });
+
+</script>
+

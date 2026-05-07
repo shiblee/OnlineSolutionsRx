@@ -1,0 +1,60 @@
+{{ header }}
+{{ column_left }}
+
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <a href="{{ add }}" class="btn btn-primary">Add New</a>
+      </div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+          <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    {% if success %}
+      <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
+    {% endif %}
+    {% if error_warning %}
+      <div class="alert alert-danger alert-dismissibleble"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+    {% endif %}
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-list"></i> Blog Categories</h3></div>
+      <div class="panel-body">
+        <table class="table table-bordered">
+         <thead>
+  <tr>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+</thead>
+<tbody>
+  {% for category in categories %}
+    <tr>
+      <td>{{ category.name }}</td>
+      <td>{{ category.status ? 'Enabled' : 'Disabled' }}</td>
+      <td>
+        <a href="{{ category.edit }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
+       <a href="{{ category.delete }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');"><i class="fa fa-trash"></i></a>
+
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="3">No categories found.</td></tr>
+  {% endfor %}
+</tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ footer }}

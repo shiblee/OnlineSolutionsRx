@@ -1,0 +1,23 @@
+<div>{% if heading_title %}
+  <div class="heading text-center"><h1><span>{{ heading_title }}</span></h1></div>
+
+  {% endif %}
+  {{ html }}</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#testi").owlCarousel({
+    itemsCustom : [
+    [0, 1],
+    [768, 1],
+    [992, 1],
+    [1200, 1]
+    ],
+      autoPlay: false,
+      navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+      navigation : true,
+      pagination:false
+    });
+    });
+
+  </script>

@@ -1,0 +1,120 @@
+<div class="col-lg-6 col-md-12 col-xs-12 next-prevb onsalepro">
+<div class="topbor">
+  <div class="heading"><h1><span>{{onsale_title}}</span></h1></div>
+
+<div class="onsale-bor">
+  <div class="row rless">
+   <div id="onsale" class="owl-theme owl-carousel cbp">
+  {% for product in products %}
+    <div class="multi-row">
+  <div class="product-layout col-xs-12 cless">
+    <div class="product-thumb transition">
+    <div class="owl-feadditional image">
+        <a href="{{ product.href }}">
+          <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive center-block" />
+        </a>
+        <!-- Pixel Images Start -->
+          {% for more_image in product.more_images %}
+          {% for pop in more_image %}
+             {% if t == 0  or t == 1 %}
+            <a href="{{ product.href }}"><img src="{{ pop.popup_more }}" class="img-responsive" alt="hover image"/></a>
+             {% set t = t + 1 %}
+             {% endif %}
+          {% endfor %}
+          {% endfor %}
+        <!-- End -->
+          </div>
+
+      <div class="caption ">
+         {#} {% if product.rating %}
+          <div class="rating">
+            {% for i in 1..5 %}
+            {% if product.rating < i %}
+            <span class="fa fa-stack">
+              <i class="fa fa-star-o fa-stack-2x"></i>
+            </span>
+            {% else %}
+            <span class="fa fa-stack">
+              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+            </span>
+            {% endif %}
+            {% endfor %}
+          </div>{% else %}
+          <div class="rating">{% for i in 1..5 %}
+          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+          {% endfor %}</div>
+        {% endif %} #}
+        <h4 class="protitle"><a href="{{ product.href }}">{{ product.name }}</a></h4>
+         <p class="countprice">{{ product.description }}</p>
+         {% if product.price %}
+        <div class="price">
+          {% if not product.special %}
+          {{ product.price }}
+          {% else %}
+          <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+          {% endif %}
+         {#  {% if product.tax %}
+          <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+          {% endif %} #}
+        </div>
+        {% endif %}
+       
+
+        <div class="button-group">
+            <div class="absbtn">
+             <button type="button"  data-toggle="tooltip" title="{{ button_cart }}" onclick="cart.add('{{ product.product_id }}');"><svg><use xlink:href="#pcart"></use></svg></button>
+          <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><svg><use xlink:href="#heart" /></svg></button>
+          <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><svg><use xlink:href="#compare"/></svg></button>
+          <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
+           </div>
+      </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+ </div>
+    {% endfor %}
+</div>
+   </div> 
+   </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#onsale").owlCarousel({
+    itemsCustom : [
+    [0, 1],
+    [414, 2],
+    [600, 3],
+    [768, 3],
+    [992, 3],
+    [1200, 2],
+    [1410, 2],
+    [1600, 2]
+    ],
+      // autoPlay: 1000,
+      navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+      navigation : true,
+      pagination:false
+    });
+    });
+    $(document).ready(function() {
+    $(".owl-feadditional").slick({
+            centerMode: false,
+            slidesToShow: 1,
+            autoplay: false,
+            autoplaySpeed: 2000,
+            arrows: false,
+            dots: true,
+            pauseOnHover: !1
+        })
+    });
+</script>
+
