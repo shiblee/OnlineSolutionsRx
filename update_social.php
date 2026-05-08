@@ -13,7 +13,11 @@ $query = $db->query("SELECT * FROM " . DB_PREFIX . "module WHERE module_id = 50"
 if ($query->num_rows) {
     $setting = $query->row['setting'];
     
-    // Perform replacements
+    // Perform replacements (handling escaped slashes)
+    $setting = str_replace('https:\/\/www.facebook.com\/profile.php?id=100087213459452', 'https:\/\/www.facebook.com\/onlinesolutionsrxofficial', $setting);
+    $setting = str_replace('https:\/\/www.instagram.com\/onlinesolutionsrx\/', 'https:\/\/www.instagram.com\/onlinesolutionsrx1\/', $setting);
+    
+    // Also try without escaped slashes just in case
     $setting = str_replace('https://www.facebook.com/profile.php?id=100087213459452', $facebook, $setting);
     $setting = str_replace('https://www.instagram.com/onlinesolutionsrx/', $instagram, $setting);
     
